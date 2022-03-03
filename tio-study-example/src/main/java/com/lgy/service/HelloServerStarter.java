@@ -30,6 +30,7 @@ public class HelloServerStarter {
      */
     public static void main(String[] args) throws IOException {
         serverTioConfig.setHeartbeatTimeout(Const.TIMEOUT);
+        serverTioConfig.setServerAioListener(new HelloServerAioListener());
         tioServer.start(serverIp, serverPort);
     }
 }

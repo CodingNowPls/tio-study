@@ -34,6 +34,7 @@ public class HelloClientStarter {
      */
     public static void main(String[] args) throws Exception {
         clientTioConfig.setHeartbeatTimeout(Const.TIMEOUT);
+        clientTioConfig.setClientAioListener(new HelloClientAioListener());
         tioClient = new TioClient(clientTioConfig);
         clientChannelContext = tioClient.connect(serverNode);
         //连上后，发条消息玩玩
