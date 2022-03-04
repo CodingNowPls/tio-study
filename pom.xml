@@ -22,11 +22,6 @@
         <maven.version>3.5.0</maven.version>
         <tio-utils.version>3.5.1.v20190826-RELEASE</tio-utils.version>
         <tio-core.version>${tio-utils.version}</tio-core.version>
-<!--        <tio-flash-policy-server.version>${tio-utils.version}</tio-flash-policy-server.version>-->
-<!--        <tio-http.version>0.0.8-tio-http</tio-http.version>-->
-<!--        <tio-websocket.version>0.0.8-tio-websocket</tio-websocket.version>-->
-<!--        <tio-live.version>0.0.8-tio-live</tio-live.version>-->
-<!--        <tio-bs.version>0.0.8-tio-bs</tio-bs.version>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 

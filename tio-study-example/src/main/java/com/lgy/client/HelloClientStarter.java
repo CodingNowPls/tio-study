@@ -42,7 +42,14 @@ public class HelloClientStarter {
     }
     private static void send() throws Exception {
         HelloPacket packet = new HelloPacket();
-        packet.setBody("hello world".getBytes(HelloPacket.CHARSET));
+        String json = "{\n" +
+                "    \"service\": \"query_price\",\n" +
+                "    \"parkid\": \"20210001\",\n" +
+                "    \"uuid\": \"ABCD1234\",\n" +
+                "    \"car_number\": \"粤A12345\",\n" +
+                "    \"pay_scene\": 0\n" +
+                "  }";
+        packet.setBody(json.getBytes(HelloPacket.CHARSET));
         Tio.send(clientChannelContext, packet);
     }
 }
