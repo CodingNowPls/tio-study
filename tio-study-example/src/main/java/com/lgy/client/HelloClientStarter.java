@@ -38,9 +38,24 @@ public class HelloClientStarter {
         tioClient = new TioClient(clientTioConfig);
         clientChannelContext = tioClient.connect(serverNode);
         //连上后，发条消息玩玩
-        send();
+        sendAuth();
+        sendQueryOrder();
+        sendHeartBeat();
     }
-    private static void send() throws Exception {
+
+    private static void sendAuth() throws Exception {
+        HelloPacket packet = new HelloPacket();
+        String auth = "  {\n" +
+                "    \"service\": \"checkKey\",\n" +
+                "    \"parkid\": \"20210001\",\n" +
+                "    \"parkkey\": \"C80FB9B8-73E8-4C03-B300-2037F14F42C6\"\n" +
+                "  }";
+
+        packet.setBody(auth.getBytes(HelloPacket.CHARSET));
+        Tio.send(clientChannelContext, packet);
+    }
+
+    private static void sendQueryOrder() throws Exception {
         HelloPacket packet = new HelloPacket();
         String json = "{\n" +
                 "    \"service\": \"query_price\",\n" +
@@ -48,6 +63,17 @@ public class HelloClientStarter {
                 "    \"uuid\": \"ABCD1234\",\n" +
                 "    \"car_number\": \"粤A12345\",\n" +
                 "    \"pay_scene\": 0\n" +
+                "  }";
+        packet.setBody(json.getBytes(HelloPacket.CHARSET));
+        Tio.send(clientChannelContext, packet);
+    }
+
+    private static void sendHeartBeat() throws Exception {
+        HelloPacket packet = new HelloPacket();
+        String json = "  {\n" +
+                "    \"service\": \"heartbeat\",\n" +
+                "    \"parkid\": \"20210001\",\n" +
+                "    \"time\": \"2021-02-01 09:00:00\",\n" +
                 "  }";
         packet.setBody(json.getBytes(HelloPacket.CHARSET));
         Tio.send(clientChannelContext, packet);
