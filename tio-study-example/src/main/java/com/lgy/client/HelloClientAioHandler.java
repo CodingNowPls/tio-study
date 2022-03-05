@@ -1,6 +1,7 @@
 package com.lgy.client;
 
 import java.nio.ByteBuffer;
+import java.util.Date;
 
 import com.lgy.common.HelloPacket;
 import org.tio.client.intf.ClientAioHandler;
@@ -14,7 +15,6 @@ import org.tio.core.intf.Packet;
  * @author tanyaowu
  */
 public class HelloClientAioHandler implements ClientAioHandler {
-    private static HelloPacket heartbeatPacket = new HelloPacket();
     /**
      * 解码：把接收到的ByteBuffer，解码成应用可以识别的业务消息包
      * 总的消息结构：消息头 + 消息体
@@ -88,7 +88,7 @@ public class HelloClientAioHandler implements ClientAioHandler {
         byte[] body = helloPacket.getBody();
         if (body != null) {
             String str = new String(body, HelloPacket.CHARSET);
-            System.out.println("收到消息：" + str);
+            System.out.println("收到消息："+new Date() +":"+ str);
         }
         return;
     }

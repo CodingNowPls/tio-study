@@ -24,7 +24,8 @@ public class HelloClientStarter {
     //事件监听器，可以为null，但建议自己实现该接口，可以参考showcase了解些接口
     public static ClientAioListener aioListener = null;
     //断链后自动连接的，不想自动连接请设为null
-    private static ReconnConf reconnConf = new ReconnConf(5000L);
+//    private static ReconnConf reconnConf = new ReconnConf(5000L);
+    private static ReconnConf reconnConf = null;
     //一组连接共用的上下文对象
     public static ClientTioConfig clientTioConfig = new ClientTioConfig(tioClientHandler, aioListener, reconnConf);
     public static TioClient tioClient = null;
@@ -39,6 +40,7 @@ public class HelloClientStarter {
         clientChannelContext = tioClient.connect(serverNode);
         //连上后，发条消息玩玩
         sendAuth();
+        Thread.sleep(2000);
         sendQueryOrder();
         sendHeartBeat();
     }
@@ -52,7 +54,8 @@ public class HelloClientStarter {
                 "  }";
 
         packet.setBody(auth.getBytes(HelloPacket.CHARSET));
-        Tio.send(clientChannelContext, packet);
+        Boolean aBoolean = Tio.bSend(clientChannelContext, packet);
+
     }
 
     private static void sendQueryOrder() throws Exception {
@@ -60,7 +63,7 @@ public class HelloClientStarter {
         String json = "{\n" +
                 "    \"service\": \"query_price\",\n" +
                 "    \"parkid\": \"20210001\",\n" +
-                "    \"uuid\": \"ABCD1234\",\n" +
+//                "    \"uuid\": \"ABCD1234\",\n" +
                 "    \"car_number\": \"粤A12345\",\n" +
                 "    \"pay_scene\": 0\n" +
                 "  }";
