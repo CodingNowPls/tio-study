@@ -48,7 +48,7 @@ public class HelloClientStarter {
         String auth = "  {\n" +
                 "    \"service\": \"checkKey\",\n" +
                 "    \"parkid\": \"20210001\",\n" +
-                "    \"parkkey\": \"C80FB9B8-73E8-4C03-B300-2037F14F42C6\"\n" +
+                "    \"parkkey\": \"C80FB9B8-73E8-4C03-B300-2037F14F42C6\"" +
                 "  }";
 
         packet.setBody(auth.getBytes(HelloPacket.CHARSET));
@@ -73,7 +73,7 @@ public class HelloClientStarter {
         String json = "  {\n" +
                 "    \"service\": \"heartbeat\",\n" +
                 "    \"parkid\": \"20210001\",\n" +
-                "    \"time\": \"2021-02-01 09:00:00\",\n" +
+                "    \"time\": \"2021-02-01 09:00:00\"\n" +
                 "  }";
         packet.setBody(json.getBytes(HelloPacket.CHARSET));
         Tio.send(clientChannelContext, packet);

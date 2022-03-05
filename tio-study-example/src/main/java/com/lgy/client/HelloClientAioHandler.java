@@ -5,6 +5,7 @@ import java.nio.ByteBuffer;
 import com.lgy.common.HelloPacket;
 import org.tio.client.intf.ClientAioHandler;
 import org.tio.core.ChannelContext;
+import org.tio.core.Tio;
 import org.tio.core.TioConfig;
 import org.tio.core.exception.AioDecodeException;
 import org.tio.core.intf.Packet;
@@ -95,6 +96,23 @@ public class HelloClientAioHandler implements ClientAioHandler {
 
     @Override
     public Packet heartbeatPacket(ChannelContext channelContext) {
-        return heartbeatPacket;
+        try {
+            return sendHeartBeat();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    private  HelloPacket sendHeartBeat() throws Exception {
+        HelloPacket packet = new HelloPacket();
+        String json = "  {\n" +
+                "    \"service\": \"heartbeat\",\n" +
+                "    \"parkid\": \"20210001\",\n" +
+                "    \"time\": \"2021-02-01 09:00:00\"\n" +
+                "  }";
+        packet.setBody(json.getBytes(HelloPacket.CHARSET));
+        return packet;
     }
 }
