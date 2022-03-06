@@ -28,6 +28,11 @@
             <artifactId>tio-core</artifactId>
             <version>${tio-core.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.lgy</groupId>
+            <artifactId>tio-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
